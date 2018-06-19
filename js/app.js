@@ -1,11 +1,20 @@
 new Vue({
     el: '#exercise',
     data: {
-        value: ''
+        value: 0
     },
-    methods: {
-        alert: function () {
-            alert('alert clicked')
+    computed: {
+        result: function () {
+            vw = this;
+            return vw.value < 37 ? 'not there yet' : 'done'
+        }
+    },
+    watch: {
+        value: function (value) {
+            let vm = this;
+            setTimeout(function () {
+                vm.value = 0;
+            }, 2000);
         }
     }
 });
