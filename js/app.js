@@ -1,38 +1,17 @@
 new Vue({
     el: '#exercise',
     data: {
-        attachedShrink: false,
-        personalCssClass: '',
-        isVisible: false,
-        myStyle: {
-            width: '100px',
-            height: '150px',
-            backgroundColor: 'gray'
+        show: true,
+        array: ['Max', 'Anna', 'Chris', 'Manu'],
+        myObject: {
+            title: 'Lord of the Rings',
+            author: 'J.R.R. Tolkiens',
+            books: '3'
         },
-        progressBar: {
-            width: '0px',
-            backgroundColor: 'red'
-        }
-    },
-    computed: {
-        startEffect: function () {
-            return {
-                highlight: this.attachedShrink,
-                shrink: !this.attachedShrink
-            }
-        },
-
-    },
-    methods:{
-        startProgress: function () {
-            let vm = this;
-            let width = 0;
-
-            setInterval(function () {
-                width = width + 10;
-                vm.progressBar.width = width + 'px';
-            }, 500);
+        testData: {
+            name: 'TESTOBJECT',
+            id: 10,
+            data: [1.67, 1.33, 0.98, 2.21]
         }
     }
-
 });
