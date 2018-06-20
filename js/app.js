@@ -1,20 +1,38 @@
 new Vue({
     el: '#exercise',
     data: {
-        value: 0
+        attachedShrink: false,
+        personalCssClass: '',
+        isVisible: false,
+        myStyle: {
+            width: '100px',
+            height: '150px',
+            backgroundColor: 'gray'
+        },
+        progressBar: {
+            width: '0px',
+            backgroundColor: 'red'
+        }
     },
     computed: {
-        result: function () {
-            vw = this;
-            return vw.value < 37 ? 'not there yet' : 'done'
-        }
+        startEffect: function () {
+            return {
+                highlight: this.attachedShrink,
+                shrink: !this.attachedShrink
+            }
+        },
+
     },
-    watch: {
-        value: function (value) {
+    methods:{
+        startProgress: function () {
             let vm = this;
-            setTimeout(function () {
-                vm.value = 0;
-            }, 2000);
+            let width = 0;
+
+            setInterval(function () {
+                width = width + 10;
+                vm.progressBar.width = width + 'px';
+            }, 500);
         }
     }
+
 });
