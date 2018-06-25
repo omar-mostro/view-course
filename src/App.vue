@@ -1,42 +1,29 @@
 <template>
-  <world-status></world-status>
+  <div class="container">
+
+    <omar-header></omar-header>
+
+    <omar-server-details></omar-server-details>
+
+    <omar-footer></omar-footer>
+
+  </div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  import Header from './Header.vue'
+  import ServerDatails from './ServerDetails.vue'
+
+
+  export default {
+    components: {
+      //creando componentes locales
+      'omar-header': Header,
+      'omar-server-details': ServerDatails
     }
   }
-}
 </script>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style>
 
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>

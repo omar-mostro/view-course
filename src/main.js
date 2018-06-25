@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Home from './Home.vue'
+import Footer from './Footer.vue'
+
 
 //global component
-Vue.component('world-status', Home);
+Vue.component('omar-footer', Footer);
 
 new Vue({
   el: '#app',
