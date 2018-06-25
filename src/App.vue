@@ -1,5 +1,5 @@
 <template>
- <h1>{{msg}}</h1>
+  <world-status></world-status>
 </template>
 
 <script>
