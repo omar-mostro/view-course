@@ -1,32 +1,41 @@
 <template>
-    <div class="container">
-        <app-header></app-header>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <br>
+        <button @click="colorDiv = 'app-blue',text='blue' " class="btn btn-primary">Load Blue Template</button>
+        <button @click="colorDiv = 'app-green',text='green'" class="btn btn-success">Load Green Template</button>
+        <button @click="colorDiv = 'app-red',text='red'" class="btn btn-danger">Load Red Template</button>
+        <p>{{text}}</p>
         <hr>
-        <div class="row">
-            <servers></servers>
-            <app-server-details></app-server-details>
-        </div>
-        <hr>
-        <app-footer></app-footer>
+        <component :is="colorDiv">
+          <p>contenido test</p>
+        </component>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-    import Header from './components/Shared/Header.vue';
-    import Footer from './components/Shared/Footer.vue';
-    import Servers from './components/Server/Servers.vue';
-    import ServerDetails from './components/Server/ServerDetails.vue';
+  import Blue from './components/Blue.vue';
+  import Green from './components/Green.vue';
+  import Red from './components/Red.vue';
 
-    export default {
-        components: {
-            appHeader: Header,
-            Servers,
-            'app-server-details': ServerDetails,
-            'app-footer': Footer
-        }
+  export default {
+
+    data() {
+      return {
+        colorDiv: 'app-blue',
+        text:'blue'
+      }
+    },
+    components: {
+      appBlue: Blue,
+      appGreen: Green,
+      appRed: Red
     }
+  }
 </script>
 
 <style>
-
 </style>
