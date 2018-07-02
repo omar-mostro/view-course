@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Footer from './Footer.vue'
 
-
-//global component
-Vue.component('omar-footer', Footer);
+export const eventBus = new Vue({
+  methods: {
+    changeStatus(server) {
+      this.$emit('statusWasEdited', server);
+    }
+  }
+});
 
 new Vue({
   el: '#app',
