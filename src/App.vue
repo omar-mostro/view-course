@@ -2,78 +2,82 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-        <h1>Filters & Mixins</h1>
-        <!-- Exercise 1) -->
-        <!-- Build a local Filter which reverses the Text it is applied on -->
-        <div class="form-group">
-          <label>Reverse String</label>
-          <input v-model="text" type="text" class="form-control">
-          <p><strong>reverse Text: </strong>{{text | reverseText}}</p>
-        </div>
-        <!-- Exercise 2 -->
-        <!-- Build a global Filter which counts the length of a word and it appends it -->
-        <!-- Like this: "Test" => Gets Filtered to => "Test (4)" -->
-
-        <div class="form-group">
-          <label>Length of a word</label>
-          <input v-model="text" type="text" class="form-control">
-          <p><strong>reverse Text: </strong>{{text | lengthWord}}</p>
-        </div>
-
-        <!-- Exercise 3 -->
-        <!-- Do the same as in Exercises 1 & 2, now with Computed Properties -->
-
-        <div class="form-group">
-          <label>Reverse String Computed</label>
-          <input v-model="text" type="text" class="form-control">
-          <p><strong>reverse Text: </strong>{{reverseTextComputed}}</p>
-        </div>
-
-        <div class="form-group">
-          <label>Length of a word Computed</label>
-          <input v-model="text" type="text" class="form-control">
-          <p><strong>reverse Text: </strong>{{lengthWordComputed}}</p>
-        </div>
-
-        <!-- Exercise 4 -->
-        <!-- Share the Computed Property rebuilding Exercise 2 via a Mixin -->
-
-
+        <h1 class="text-center">The Super Quiz</h1>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        <transition name="flip" mode="out-in">
+          <component :is="mode" @answered="answered" @confirmed="mode = 'app-question'"></component>
+        </transition>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import {WordsMixin} from './WordsMixin';
+  import Question from './components/Question.vue';
+  import Answer from './components/Answer.vue';
+
   export default {
-    mixins: [WordsMixin],
     data() {
       return {
-        text: 'hola'
+        mode: 'app-question'
       }
     },
-    /*computed: {
-      reverseTextComputed(){
-        if (!this.text) return '';
-        let value  = this.text.toString();
-        return value.split("").reverse().join("");
-      },
-      lengthWordComputed(){
-
-        let value = this.text.toString();
-        return value+'('+ value.split("").length +')';
-      },
-    },*/
-    filters: {
-      reverseText(value) {
-        value = value.toString();
-
-        return value.split("").reverse().join("");
+    methods: {
+      answered(isCorrect) {
+        if (isCorrect) {
+          this.mode = 'app-answer';
+        } else {
+          this.mode = 'app-question';
+          alert('Wrong, try again!');
+        }
       }
+    },
+    components: {
+      appQuestion: Question,
+      appAnswer: Answer
     }
   }
 </script>
 
 <style>
+  .flip-enter {
+    /*transform: rotateY(0deg);*/
+  }
+
+  .flip-enter-active {
+
+    animation: flip-in 0.5s ease-out forwards;
+  }
+
+  .flip-leave-active {
+
+    animation: flip-out 0.5s ease-out forwards;
+  }
+
+  .flip-leave {
+    /*transform: rotateY(0deg);*/
+  }
+
+  @keyframes flip-out {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(90deg);
+    }
+  }
+
+  @keyframes flip-in {
+    from {
+      transform: rotateY(90deg);
+    }
+    to {
+      transform: rotateY(0deg);
+    }
+  }
 </style>
+
