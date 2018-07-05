@@ -94,7 +94,7 @@
     created() {
       const customActions = {
         saveAlt: {method: 'POST', url: 'alternative.json'},
-        getData: {method: 'GET', url: 'alternative.json'},
+        getData: {method: 'GET'},
 
       };
       this.resource = this.$resource('{node}.json', {}, customActions);
